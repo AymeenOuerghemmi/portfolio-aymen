@@ -18,9 +18,9 @@ const data = {
   socials: {
     github: "https://github.com/AymeenOuerghemmi",
     linkedin: "https://www.linkedin.com/in/aymen-ouerghemmi/",
-    email: "mailto:you@example.com",
+    email: "mailto:werghemiaymen@gmail.com",
     phone: "tel:+216 27 765 289",
-    website: "https://your-domain.tn",
+    website: "https://www.linkedin.com/in/aymen-ouerghemmi/",
   },
   skills: [
     "Angular", "TypeScript", "PrimeNG", "React", "Tailwind",
