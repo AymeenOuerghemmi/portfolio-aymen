@@ -6,16 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Github, Mail, Linkedin, Globe, Phone, ArrowRight, Download, ExternalLink, MapPin } from "lucide-react";
 
-/*
-  One‑page portfolio starter
-  - TailwindCSS for styling
-  - shadcn/ui for polished components
-  - framer-motion for subtle animations
-  How to use quickly in a Vite or Next.js app:
-    1) Ensure Tailwind + shadcn/ui are set up. (https://ui.shadcn.com)
-    2) Put this file as app/page.tsx (Next.js App Router) or as a component and render it.
-    3) Replace the data object below with your info.
-*/
 
 const data = {
   name: "Aymen Ouerghemmi",
@@ -29,7 +19,7 @@ const data = {
     github: "https://github.com/AymeenOuerghemmi",
     linkedin: "https://www.linkedin.com/in/aymen-ouerghemmi/",
     email: "mailto:you@example.com",
-    phone: "tel:+21600000000",
+    phone: "tel:+216 27 765 289",
     website: "https://your-domain.tn",
   },
   skills: [
@@ -85,7 +75,7 @@ const data = {
       period: "2022 – 2025",
     },
   ],
-  resumeUrl: "/Aymen_Ouerghemmi_CV.pdf",
+  resumeUrl: "https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/Cv-Aymen%20OUERGHEMMI.pdf",
 };
 
 const SectionTitle: React.FC<{ id: string; children: React.ReactNode; }> = ({ id, children }) => (
