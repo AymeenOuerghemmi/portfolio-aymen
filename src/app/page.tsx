@@ -235,7 +235,7 @@ const data: DataShape = {
     {
       title: 'Scrum Fundamentals',
       issuer: 'Scrum (Foundations)',
-      period: '2025',
+      period: '2023',
       type: 'image',
       url: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/scrum%20cert.jpg',
     },
