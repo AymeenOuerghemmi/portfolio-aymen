@@ -1,7 +1,9 @@
 'use client';
+
 import React from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import type { Variants } from 'framer-motion';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +11,6 @@ import {
   Github,
   Mail,
   Linkedin,
-  Globe,
   Phone,
   ArrowRight,
   Download,
@@ -21,9 +22,66 @@ import {
 } from 'lucide-react';
 
 /* ------------------------------------------------------------
+   TYPES
+------------------------------------------------------------- */
+type Socials = {
+  github: string;
+  linkedin: string;
+  email: string;
+  phone: string;
+  website: string;
+};
+
+type Project = {
+  title: string;
+  tags: string[];
+  desc: string;
+  link: string;
+  repo: string;
+  image: string;
+};
+
+type ExperienceItem = {
+  role: string;
+  company: string;
+  period: string;
+  points: string[];
+};
+
+type EducationItem = {
+  title: string;
+  org: string;
+  period: string;
+};
+
+type Certificate = {
+  title: string;
+  issuer: string;
+  period: string;
+  type: 'image' | 'pdf';
+  url: string;
+  previewUrl?: string;
+};
+
+type DataShape = {
+  name: string;
+  role: string;
+  location: string;
+  summary: string;
+  avatar: string;
+  socials: Socials;
+  skills: string[];
+  projects: Project[];
+  experience: ExperienceItem[];
+  education: EducationItem[];
+  certificates: Certificate[];
+  resumeUrl: string;
+};
+
+/* ------------------------------------------------------------
    DATA
 ------------------------------------------------------------- */
-const data = {
+const data: DataShape = {
   name: 'Aymen Ouerghemmi',
   role: 'Software Engineer — Full-Stack (Angular • Spring Boot • Laravel • Vue)',
   location: 'Sfax, Tunisia',
@@ -76,7 +134,7 @@ const data = {
       link: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/short%20demo%20%E2%80%90%20R%C3%A9alis%C3%A9e%20avec%20Clipchamp.mp4',
       repo: 'https://github.com/AymeenOuerghemmi',
       image:
-        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/instadoc.png',
+        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/-instadoc-.png',
     },
     {
       title: 'LawLead — Law Cabinet Management',
@@ -85,7 +143,7 @@ const data = {
       link: '#',
       repo: 'https://github.com/AymeenOuerghemmi',
       image:
-        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/Lawlead.png',
+        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/-Lawlead-.png',
     },
     {
       title: 'BookIfyNow — Booking Management',
@@ -94,7 +152,7 @@ const data = {
       link: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/Demo_Stage_Ete.mp4',
       repo: 'https://github.com/AymeenOuerghemmi',
       image:
-        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/BookIfyNow.png',
+        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/-BookIfyNow-.png',
     },
     {
       title: 'MyCV — Mobile CV App',
@@ -114,7 +172,7 @@ const data = {
       image:
         'https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1200&auto=format&fit=crop',
     },
-    {
+    /* {
       title: 'At Your Service — Home Services Platform',
       tags: ['HTML', 'CSS', 'Bootstrap', 'PHP', 'MySQL'],
       desc: 'Marketplace to connect clients with home-service providers.',
@@ -122,15 +180,6 @@ const data = {
       repo: 'https://github.com/AymeenOuerghemmi/HomeService_WebSite',
       image:
         'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop',
-    },
-    /* {
-      title: 'Remote Hosting — 2-node Docker deployment',
-      tags: ['Docker', 'Linux', 'OpenStack', 'VMware'],
-      desc: 'Deployed web & DB servers on remote infra; enabled remote team access.',
-      link: '#',
-      repo: 'https://github.com/AymeenOuerghemmi',
-      image:
-        'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop',
     }, */
   ],
   experience: [
@@ -182,30 +231,31 @@ const data = {
       period: '2022',
     },
   ],
-  // NEW: certificates
   certificates: [
     {
       title: 'Scrum Fundamentals',
       issuer: 'Scrum (Foundations)',
       period: '2025',
-      type: 'image' as const,
+      type: 'image',
       url: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/scrum%20cert.jpg',
     },
     {
       title: 'IBM Big Data Engineer',
       issuer: 'IBM',
       period: '2024',
-      type: 'pdf' as const,
+      type: 'pdf',
       url: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/IBM%20cert.pdf',
-      previewUrl: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/big-data-engineer-certificate.png'
+      previewUrl:
+        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/big-data-engineer-certificate.png',
     },
     {
       title: 'Artificial Intelligence Certificate',
       issuer: 'Training Program',
       period: '2024',
-      type: 'pdf' as const,
+      type: 'pdf',
       url: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/Cert%20IA.pdf',
-      previewUrl: 'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/it-specialist-artificial-intelligence.png'
+      previewUrl:
+        'https://vaff8itgswgn4ojj.public.blob.vercel-storage.com/it-specialist-artificial-intelligence.png',
     },
   ],
   resumeUrl:
@@ -215,8 +265,8 @@ const data = {
 /* ------------------------------------------------------------
    ANIMATION HELPERS
 ------------------------------------------------------------- */
-const EASE_OUT = [0.16, 1, 0.3, 1] as const;      // easeOut cubic-bezier
-const EASE_IN_OUT = [0.42, 0, 0.58, 1] as const;  // easeInOut cubic-bezier
+const EASE_OUT = [0.16, 1, 0.3, 1] as const; // easeOut cubic-bezier
+const EASE_IN_OUT = [0.42, 0, 0.58, 1] as const; // easeInOut cubic-bezier
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -417,22 +467,29 @@ const Hero: React.FC = () => (
               <MapPin className="size-4" />
               {data.location}
             </span>
-            
           </motion.div>
         </motion.div>
+
+        {/* Avatar with subtle float animation via wrapper */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="justify-self-center"
         >
-          <motion.img
-            src={data.avatar}
-            alt="Avatar"
-            className="size-48 md:size-64 rounded-full object-cover shadow-xl"
+          <motion.div
             animate={{ y: [0, -6, 0] }}
             transition={{ repeat: Infinity, duration: 6, ease: EASE_IN_OUT }}
-          />
+          >
+            <Image
+              src={data.avatar}
+              alt="Avatar"
+              width={256}
+              height={256}
+              unoptimized
+              className="size-48 md:size-64 rounded-full object-cover shadow-xl"
+            />
+          </motion.div>
         </motion.div>
       </div>
     </Container>
@@ -498,13 +555,16 @@ const Projects: React.FC = () => (
             <motion.div variants={hoverLift} initial="rest" whileHover="hover">
               <Card className="overflow-hidden group">
                 <div className="aspect-[16/10] overflow-hidden">
-                  <motion.img
-                    src={p.image}
-                    alt={p.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45 }}
-                  />
+                  <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.45 }}>
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      width={1200}
+                      height={750}
+                      unoptimized
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
                 </div>
                 <CardHeader>
                   <CardTitle className="text-lg">{p.title}</CardTitle>
@@ -607,7 +667,7 @@ const Education: React.FC = () => (
 );
 
 /* ------------------------------------------------------------
-   CERTIFICATES (new)
+   CERTIFICATES
 ------------------------------------------------------------- */
 const Certificates: React.FC = () => (
   <AnimatedSection id="certificates" className="py-16 md:py-24 bg-slate-50 border-y">
@@ -623,19 +683,23 @@ const Certificates: React.FC = () => (
               <Card className="overflow-hidden">
                 {/* Preview area */}
                 <div className="aspect-[16/10] bg-slate-100 flex items-center justify-center overflow-hidden">
-                  {'previewUrl' in c ? (
-                    <img
-                      src={(c as any).previewUrl}
+                  {c.previewUrl ? (
+                    <Image
+                      src={c.previewUrl}
                       alt={c.title}
+                      width={1200}
+                      height={750}
+                      unoptimized
                       className="w-full h-full object-cover"
-                      loading="lazy"
                     />
                   ) : c.type === 'image' ? (
-                    <img
+                    <Image
                       src={c.url}
                       alt={c.title}
+                      width={1200}
+                      height={750}
+                      unoptimized
                       className="w-full h-full object-cover"
-                      loading="lazy"
                     />
                   ) : (
                     <div className="flex flex-col items-center justify-center text-slate-500">
@@ -693,7 +757,7 @@ const Certificates: React.FC = () => (
 );
 
 /* ------------------------------------------------------------
-   CONTACT (subtle card pop)
+   CONTACT
 ------------------------------------------------------------- */
 const Contact: React.FC = () => (
   <AnimatedSection id="contact" className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white">
